@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <title>暂时先不测试了</title>
 <script src="./vue.min.js"></script>
-<script src="//imgcache.qq.com/qcloud/cloudbase-js-sdk/1.2.1/cloudbase.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
 </head>
 <body>
 <div id="app">
@@ -24,19 +24,17 @@ new Vue({
 </script>
 
 <script>
-  const app = cloudbase.init({
-    env: 'demo-whglk' // 您的环境id
-  })
-  var db = app.database();
-  db.collection("todos")
-    .where({
-      // gt 方法用于指定一个 "大于" 条件，此处 _.gt(30) 是一个 "大于 30" 的条件
-      progress: _.gt(30)
-    })
-    .get()
-    .then((res) => {
-      console.log(res.data);
-    });
+  $.ajax({
+                url:'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx969333a36ca53da2&secret=568526454b3129db9228349cd4845956',
+                type:"get",
+                async: true,
+                success: function (result) {
+                   
+                },
+                error: function (result) {
+                    console.log(result);
+                }
+            });
 
   
 </script>
