@@ -27,16 +27,18 @@ new Vue({
   const app = cloudbase.init({
     env: 'demo-whglk' // 您的环境id
   })
-  var auth = app.auth();
+  var db = app.database();
+  db.collection("todos")
+    .where({
+      // gt 方法用于指定一个 "大于" 条件，此处 _.gt(30) 是一个 "大于 30" 的条件
+      progress: _.gt(30)
+    })
+    .get()
+    .then((res) => {
+      console.log(res.data);
+    });
 
-  async function login(){
-    await auth.signInAnonymously();
-    // 匿名登录成功检测登录状态isAnonymous字段为true
-    const loginState = await auth.getLoginState();
-    console.log(loginState.isAnonymous); // true
-  }
-
-  login();
+  
 </script>
 </body>
 </html>
