@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>先测试测试</title>
+<script src="./vue.min.js"></script>
+<script src="//imgcache.qq.com/qcloud/cloudbase-js-sdk/1.2.1/cloudbase.js"></script>
+</head>
+<body>
+<div id="app">
+  <p>{{ message }}</p>
+  <img src="https://z3.ax1x.com/2021/05/10/gtMO91.jpg" alt="">
+  <!-- <img src="https://www.nbfox.com/wp-content/uploads/2020/10/29/niDlNo.jpg@water550.jpg"> -->
+</div>
+
+
+<script>
+new Vue({
+  el: '#app',
+  data: {
+    message: '无敌卡卡'
+  }
+})
+</script>
+
+<script>
+  const app = cloudbase.init({
+    env: 'demo-whglk' // 您的环境id
+  })
+  var auth = app.auth();
+
+  async function login(){
+    await auth.signInAnonymously();
+    // 匿名登录成功检测登录状态isAnonymous字段为true
+    const loginState = await auth.getLoginState();
+    console.log(loginState.isAnonymous); // true
+  }
+
+  login();
+</script>
+</body>
+</html>
